@@ -77,4 +77,18 @@ Class Common_Model extends CI_Model {
 			return $output;
 	}
 
+	public function  fetch_city($tbl, $cols, $con)
+	{
+		$this->db->select($cols);
+		$this->db->from($tbl);
+		$this->db->where($con);
+		$result = $this->db->get();
+		$output = '<option value="">Select State</option>';
+			foreach ($result->result() as $row) 
+			{
+				$output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+			}
+			return $output;
+	}
+
 }
